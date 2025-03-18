@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.compose.setContent
 
-import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -31,16 +30,17 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
-import com.example.foodordering.MainActivity
+import com.example.foodordering.Activity.BaseActivity
+import com.example.foodordering.Activity.Dashboard.MainActivity
 import com.example.foodordering.R
 
 
-class SplashActivity : AppCompatActivity() {
+class SplashActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             SplashScreen(onGetStartedClick = {
-                startActivity(Intent(this,MainActivity::class.java))
+                startActivity(Intent(this, MainActivity::class.java))
             })
         }
     }
@@ -52,7 +52,7 @@ fun SplashScreen(onGetStartedClick: () -> Unit = {}) {
         modifier = Modifier
             .fillMaxSize()
             .background(color = colorResource(R.color.darkBrown))
-            .verticalScroll(rememberScrollState()) // Giúp cuộn khi nội dung bị cắt
+            .verticalScroll(rememberScrollState())
     ) {
         ConstraintLayout(
             modifier = Modifier
@@ -99,7 +99,7 @@ fun SplashScreen(onGetStartedClick: () -> Unit = {}) {
             modifier = Modifier
                 .padding(top = 32.dp)
                 .padding(horizontal = 16.dp)
-                .wrapContentHeight() // Tránh bị cắt mất chữ
+                .wrapContentHeight()
         )
 
         Text(
@@ -109,7 +109,7 @@ fun SplashScreen(onGetStartedClick: () -> Unit = {}) {
             modifier = Modifier.padding(16.dp)
         )
 
-        Spacer(modifier = Modifier.weight(1f)) // Đẩy nút lên trên nếu màn hình nhỏ
+        Spacer(modifier = Modifier.weight(1f))
 
         GetStartedButton(
             onClick = onGetStartedClick,
